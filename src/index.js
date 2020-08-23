@@ -3,11 +3,24 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { Auth0Provider } from '@auth0/auth0-react';
+import LoginButton from './components/LoginButton';
+import Profile from './components/Profile';
+import LogoutButton from './components/LogoutButton';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Auth0Provider
+    domain="dev-dpeiw9mf.eu.auth0.com"
+    clientId="CMSVnBuUhA9Wo4H6lNVmKiJ0taHYHh3f"
+    redirectUri={window.location.origin}
+  >
+    <React.StrictMode>
+    <h1>Vissaja Liha App</h1>
+    <LoginButton />
+    <LogoutButton />
+    <Profile />
+    </React.StrictMode>
+  </Auth0Provider>,  
   document.getElementById('root')
 );
 

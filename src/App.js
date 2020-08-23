@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 class App extends Component {
     constructor(props) {
@@ -8,7 +8,6 @@ class App extends Component {
              items: [],
              isLoaded: false,
              search: '',
-             team: '',
              por1: '',
              por2: '',
              por3: '',
@@ -63,6 +62,7 @@ class App extends Component {
         var stateObj = {};
         stateObj[getState] = getValue;
         this.setState(stateObj);
+        document.getElementById("search").classList.add('hide');
     }
 
     handleSearch(event) {
@@ -101,7 +101,7 @@ class App extends Component {
             this.state.att6
         ];
         var newPlayers = [];
-        var fantasyTeam = this.state.team;
+        var fantasyTeam = this.props.user;
 
         arrayId.map( function(item) {
             var playerObj = {
@@ -167,284 +167,367 @@ class App extends Component {
                     <h1>Squad Builder</h1>
                     <form>
 
-                        
+                        <input id="search" type="text" value={search} onChange={this.handleSearch} placeholder="Search for player or team..."></input>
 
-                        <input type="text" value={search} onChange={this.handleSearch} placeholder="Search for player or team..."></input>
-
-                        <button type="button" onClick={this.saveFantasyTeam}>Salva</button>
-
-                        <select id="team" onChange={this.handleChange}>
-                            <option selected>Scegli</option>
-                            <option key="team1" value="team1">LaSquadraUno</option>
-                            <option key="team2" value="team2">LaSquadraDue</option>
-                        </select>
+                        <button type="button" class="btn btn-primary" onClick={this.saveFantasyTeam}>Salva</button>
 
                         {/* Portieri */}
-
-                        <h2>Portieri</h2>
-
-                        <select id="por1" onChange={this.handleChange}>
-                            <option selected>Scegli</option>
-                            { portieri.filter( item => (
-                                item.team.toLowerCase().includes(search.toLowerCase()) || item.name.toLowerCase().includes(search.toLowerCase())
-                                )).map(item =>(
-                                    <option key={item._id} value={item._id}>{ item.name + ' (' + item.team + ')'}</option>
-                                    ))
-                                }
-                        </select>
-
-                        <select id="por2" onChange={this.handleChange}>
-                            <option selected>Scegli</option>
-                            { portieri.filter( item => (
-                                item.team.toLowerCase().includes(search.toLowerCase()) || item.name.toLowerCase().includes(search.toLowerCase())
-                                )).map(item =>(
-                                    <option key={item._id} value={item._id}>{ item.name + ' (' + item.team + ')'}</option>
-                                    ))
-                                }
-                        </select>
-
-                        <select id="por3" onChange={this.handleChange}>
-                            <option selected>Scegli</option>
-                            { portieri.filter( item => (
-                                item.team.toLowerCase().includes(search.toLowerCase()) || item.name.toLowerCase().includes(search.toLowerCase())
-                                )).map(item =>(
-                                    <option key={item._id} value={item._id}>{ item.name + ' (' + item.team + ')'}</option>
-                                    ))
-                                }
-                        </select>
+                        <div className="input-group mb-3">
+                            <div className="input-group-prepend">
+                                <label className="input-group-text blue" for="por1">P</label>
+                            </div>
+                            <select className="custom-select" id="por1" onChange={this.handleChange}>
+                                <option selected>Scegli</option>
+                                { portieri.filter( item => (
+                                    item.team.toLowerCase().includes(search.toLowerCase()) || item.name.toLowerCase().includes(search.toLowerCase())
+                                    )).map(item =>(
+                                        <option key={item._id} value={item._id}>{ item.name + ' (' + item.team + ')'}</option>
+                                        ))
+                                    }
+                            </select>
+                        </div>  
+                        <div className="input-group mb-3">
+                            <div className="input-group-prepend">
+                                <label className="input-group-text blue" for="por2">P</label>
+                            </div>
+                            <select className="custom-select" id="por2" onChange={this.handleChange}>
+                                <option selected>Scegli</option>
+                                { portieri.filter( item => (
+                                    item.team.toLowerCase().includes(search.toLowerCase()) || item.name.toLowerCase().includes(search.toLowerCase())
+                                    )).map(item =>(
+                                        <option key={item._id} value={item._id}>{ item.name + ' (' + item.team + ')'}</option>
+                                        ))
+                                    }
+                            </select>
+                        </div>
+                        <div className="input-group mb-3">
+                            <div className="input-group-prepend">
+                                <label className="input-group-text blue" for="por3">P</label>
+                            </div>
+                            <select className="custom-select" id="por3" onChange={this.handleChange}>
+                                <option selected>Scegli</option>
+                                { portieri.filter( item => (
+                                    item.team.toLowerCase().includes(search.toLowerCase()) || item.name.toLowerCase().includes(search.toLowerCase())
+                                    )).map(item =>(
+                                        <option key={item._id} value={item._id}>{ item.name + ' (' + item.team + ')'}</option>
+                                        ))
+                                    }
+                            </select>
+                        </div>
 
                         {/* Difensori */}
-
-                        <h2>Difensori</h2>
-
-                        <select id="dif1" onChange={this.handleChange}>
-                            <option selected>Scegli</option>
-                            { difensori.filter( item => (
-                                item.team.toLowerCase().includes(search.toLowerCase()) || item.name.toLowerCase().includes(search.toLowerCase())
-                                )).map(item =>(
-                                    <option key={item._id} value={item._id}>{ item.name + ' (' + item.team + ')'}</option>
-                                    ))
-                                }
-                        </select>
-
-                        <select id="dif2" onChange={this.handleChange}>
-                            <option selected>Scegli</option>
-                            { difensori.filter( item => (
-                                item.team.toLowerCase().includes(search.toLowerCase()) || item.name.toLowerCase().includes(search.toLowerCase())
-                                )).map(item =>(
-                                    <option key={item._id} value={item._id}>{ item.name + ' (' + item.team + ')'}</option>
-                                    ))
-                                }
-                        </select>
-
-                        <select id="dif3" onChange={this.handleChange}>
-                            <option selected>Scegli</option>
-                            { difensori.filter( item => (
-                                item.team.toLowerCase().includes(search.toLowerCase()) || item.name.toLowerCase().includes(search.toLowerCase())
-                                )).map(item =>(
-                                    <option key={item._id} value={item._id}>{ item.name + ' (' + item.team + ')'}</option>
-                                    ))
-                                }
-                        </select>
-
-                        <select id="dif4" onChange={this.handleChange}>
-                            <option selected>Scegli</option>
-                            { difensori.filter( item => (
-                                item.team.toLowerCase().includes(search.toLowerCase()) || item.name.toLowerCase().includes(search.toLowerCase())
-                                )).map(item =>(
-                                    <option key={item._id} value={item._id}>{ item.name + ' (' + item.team + ')'}</option>
-                                    ))
-                                }
-                        </select>
-
-                        <select id="dif5" onChange={this.handleChange}>
-                            <option selected>Scegli</option>
-                            { difensori.filter( item => (
-                                item.team.toLowerCase().includes(search.toLowerCase()) || item.name.toLowerCase().includes(search.toLowerCase())
-                                )).map(item =>(
-                                    <option key={item._id} value={item._id}>{ item.name + ' (' + item.team + ')'}</option>
-                                    ))
-                                }
-                        </select>
-
-                        <select id="dif6" onChange={this.handleChange}>
-                            <option selected>Scegli</option>
-                            { difensori.filter( item => (
-                                item.team.toLowerCase().includes(search.toLowerCase()) || item.name.toLowerCase().includes(search.toLowerCase())
-                                )).map(item =>(
-                                    <option key={item._id} value={item._id}>{ item.name + ' (' + item.team + ')'}</option>
-                                    ))
-                                }
-                        </select>
-
-                        <select id="dif7" onChange={this.handleChange}>
-                            <option selected>Scegli</option>
-                            { difensori.filter( item => (
-                                item.team.toLowerCase().includes(search.toLowerCase()) || item.name.toLowerCase().includes(search.toLowerCase())
-                                )).map(item =>(
-                                    <option key={item._id} value={item._id}>{ item.name + ' (' + item.team + ')'}</option>
-                                    ))
-                                }
-                        </select>
-
-                        <select id="dif8" onChange={this.handleChange}>
-                            <option selected>Scegli</option>
-                            { difensori.filter( item => (
-                                item.team.toLowerCase().includes(search.toLowerCase()) || item.name.toLowerCase().includes(search.toLowerCase())
-                                )).map(item =>(
-                                    <option key={item._id} value={item._id}>{ item.name + ' (' + item.team + ')'}</option>
-                                    ))
-                                }
-                        </select>
+                        <div className="input-group mb-3">
+                            <div className="input-group-prepend">
+                                <label className="input-group-text orange" for="dif1">D</label>
+                            </div>
+                            <select className="custom-select" id="dif1" onChange={this.handleChange}>
+                                <option selected>Scegli</option>
+                                { difensori.filter( item => (
+                                    item.team.toLowerCase().includes(search.toLowerCase()) || item.name.toLowerCase().includes(search.toLowerCase())
+                                    )).map(item =>(
+                                        <option key={item._id} value={item._id}>{ item.name + ' (' + item.team + ')'}</option>
+                                        ))
+                                    }
+                            </select>
+                        </div>
+                        <div className="input-group mb-3">
+                            <div className="input-group-prepend">
+                                <label className="input-group-text orange" for="dif2">D</label>
+                            </div>
+                            <select className="custom-select" id="dif2" onChange={this.handleChange}>
+                                <option selected>Scegli</option>
+                                { difensori.filter( item => (
+                                    item.team.toLowerCase().includes(search.toLowerCase()) || item.name.toLowerCase().includes(search.toLowerCase())
+                                    )).map(item =>(
+                                        <option key={item._id} value={item._id}>{ item.name + ' (' + item.team + ')'}</option>
+                                        ))
+                                    }
+                            </select>
+                        </div>
+                        <div className="input-group mb-3">
+                            <div className="input-group-prepend">
+                                <label className="input-group-text orange" for="dif3">D</label>
+                            </div>
+                            <select className="custom-select" id="dif3" onChange={this.handleChange}>
+                                <option selected>Scegli</option>
+                                { difensori.filter( item => (
+                                    item.team.toLowerCase().includes(search.toLowerCase()) || item.name.toLowerCase().includes(search.toLowerCase())
+                                    )).map(item =>(
+                                        <option key={item._id} value={item._id}>{ item.name + ' (' + item.team + ')'}</option>
+                                        ))
+                                    }
+                            </select>
+                        </div>
+                        <div className="input-group mb-3">
+                            <div className="input-group-prepend">
+                                <label className="input-group-text orange" for="dif4">D</label>
+                            </div>
+                            <select className="custom-select" id="dif4" onChange={this.handleChange}>
+                                <option selected>Scegli</option>
+                                { difensori.filter( item => (
+                                    item.team.toLowerCase().includes(search.toLowerCase()) || item.name.toLowerCase().includes(search.toLowerCase())
+                                    )).map(item =>(
+                                        <option key={item._id} value={item._id}>{ item.name + ' (' + item.team + ')'}</option>
+                                        ))
+                                    }
+                            </select>
+                        </div>
+                        <div className="input-group mb-3">
+                            <div className="input-group-prepend">
+                                <label className="input-group-text orange" for="dif5">D</label>
+                            </div>
+                            <select className="custom-select" id="dif5" onChange={this.handleChange}>
+                                <option selected>Scegli</option>
+                                { difensori.filter( item => (
+                                    item.team.toLowerCase().includes(search.toLowerCase()) || item.name.toLowerCase().includes(search.toLowerCase())
+                                    )).map(item =>(
+                                        <option key={item._id} value={item._id}>{ item.name + ' (' + item.team + ')'}</option>
+                                        ))
+                                    }
+                            </select>
+                        </div>
+                        <div className="input-group mb-3">
+                            <div className="input-group-prepend">
+                                <label className="input-group-text orange" for="dif6">D</label>
+                            </div>
+                            <select className="custom-select" id="dif6" onChange={this.handleChange}>
+                                <option selected>Scegli</option>
+                                { difensori.filter( item => (
+                                    item.team.toLowerCase().includes(search.toLowerCase()) || item.name.toLowerCase().includes(search.toLowerCase())
+                                    )).map(item =>(
+                                        <option key={item._id} value={item._id}>{ item.name + ' (' + item.team + ')'}</option>
+                                        ))
+                                    }
+                            </select>
+                        </div>
+                        <div className="input-group mb-3">
+                            <div className="input-group-prepend">
+                                <label className="input-group-text orange" for="dif7">D</label>
+                            </div>
+                            <select className="custom-select" id="dif7" onChange={this.handleChange}>
+                                <option selected>Scegli</option>
+                                { difensori.filter( item => (
+                                    item.team.toLowerCase().includes(search.toLowerCase()) || item.name.toLowerCase().includes(search.toLowerCase())
+                                    )).map(item =>(
+                                        <option key={item._id} value={item._id}>{ item.name + ' (' + item.team + ')'}</option>
+                                        ))
+                                    }
+                            </select>
+                        </div>
+                        <div className="input-group mb-3">
+                            <div className="input-group-prepend">
+                                <label className="input-group-text orange" for="dif8">D</label>
+                            </div>
+                            <select className="custom-select" id="dif8" onChange={this.handleChange}>
+                                <option selected>Scegli</option>
+                                { difensori.filter( item => (
+                                    item.team.toLowerCase().includes(search.toLowerCase()) || item.name.toLowerCase().includes(search.toLowerCase())
+                                    )).map(item =>(
+                                        <option key={item._id} value={item._id}>{ item.name + ' (' + item.team + ')'}</option>
+                                        ))
+                                    }
+                            </select>
+                        </div>
 
                         {/* Centrocampisti */}
-
-                        <h2>Centrocampisti</h2>
-
-                        <select id="cen1" onChange={this.handleChange}>
-                            <option selected>Scegli</option>
-                            { centrocampisti.filter( item => (
-                                item.team.toLowerCase().includes(search.toLowerCase()) || item.name.toLowerCase().includes(search.toLowerCase())
-                                )).map(item =>(
-                                    <option key={item._id} value={item._id}>{ item.name + ' (' + item.team + ')'}</option>
-                                    ))
-                                }
-                        </select>
-
-                        <select id="cen2" onChange={this.handleChange}>
-                            <option selected>Scegli</option>
-                            { centrocampisti.filter( item => (
-                                item.team.toLowerCase().includes(search.toLowerCase()) || item.name.toLowerCase().includes(search.toLowerCase())
-                                )).map(item =>(
-                                    <option key={item._id} value={item._id}>{ item.name + ' (' + item.team + ')'}</option>
-                                    ))
-                                }
-                        </select>
-
-                        <select id="cen3" onChange={this.handleChange}>
-                            <option selected>Scegli</option>
-                            { centrocampisti.filter( item => (
-                                item.team.toLowerCase().includes(search.toLowerCase()) || item.name.toLowerCase().includes(search.toLowerCase())
-                                )).map(item =>(
-                                    <option key={item._id} value={item._id}>{ item.name + ' (' + item.team + ')'}</option>
-                                    ))
-                                }
-                        </select>
-
-                        <select id="cen4" onChange={this.handleChange}>
-                            <option selected>Scegli</option>
-                            { centrocampisti.filter( item => (
-                                item.team.toLowerCase().includes(search.toLowerCase()) || item.name.toLowerCase().includes(search.toLowerCase())
-                                )).map(item =>(
-                                    <option key={item._id} value={item._id}>{ item.name + ' (' + item.team + ')'}</option>
-                                    ))
-                                }
-                        </select>
-
-                        <select id="cen5" onChange={this.handleChange}>
-                            <option selected>Scegli</option>
-                            { centrocampisti.filter( item => (
-                                item.team.toLowerCase().includes(search.toLowerCase()) || item.name.toLowerCase().includes(search.toLowerCase())
-                                )).map(item =>(
-                                    <option key={item._id} value={item._id}>{ item.name + ' (' + item.team + ')'}</option>
-                                    ))
-                                }
-                        </select>
-
-                        <select id="cen6" onChange={this.handleChange}>
-                            <option selected>Scegli</option>
-                            { centrocampisti.filter( item => (
-                                item.team.toLowerCase().includes(search.toLowerCase()) || item.name.toLowerCase().includes(search.toLowerCase())
-                                )).map(item =>(
-                                    <option key={item._id} value={item._id}>{ item.name + ' (' + item.team + ')'}</option>
-                                    ))
-                                }
-                        </select>
-
-                        <select id="cen7" onChange={this.handleChange}>
-                            <option selected>Scegli</option>
-                            { centrocampisti.filter( item => (
-                                item.team.toLowerCase().includes(search.toLowerCase()) || item.name.toLowerCase().includes(search.toLowerCase())
-                                )).map(item =>(
-                                    <option key={item._id} value={item._id}>{ item.name + ' (' + item.team + ')'}</option>
-                                    ))
-                                }
-                        </select>
-
-                        <select id="cen8" onChange={this.handleChange}>
-                            <option selected>Scegli</option>
-                            { centrocampisti.filter( item => (
-                                item.team.toLowerCase().includes(search.toLowerCase()) || item.name.toLowerCase().includes(search.toLowerCase())
-                                )).map(item =>(
-                                    <option key={item._id} value={item._id}>{ item.name + ' (' + item.team + ')'}</option>
-                                    ))
-                                }
-                        </select>
+                        <div className="input-group mb-3">
+                            <div className="input-group-prepend">
+                                <label className="input-group-text green" for="cen1">C</label>
+                            </div>
+                            <select className="custom-select" id="cen1" onChange={this.handleChange}>
+                                <option selected>Scegli</option>
+                                { centrocampisti.filter( item => (
+                                    item.team.toLowerCase().includes(search.toLowerCase()) || item.name.toLowerCase().includes(search.toLowerCase())
+                                    )).map(item =>(
+                                        <option key={item._id} value={item._id}>{ item.name + ' (' + item.team + ')'}</option>
+                                        ))
+                                    }
+                            </select>
+                        </div>
+                        <div className="input-group mb-3">
+                            <div className="input-group-prepend">
+                                <label className="input-group-text green" for="cen2">C</label>
+                            </div>
+                            <select className="custom-select" id="cen2" onChange={this.handleChange}>
+                                <option selected>Scegli</option>
+                                { centrocampisti.filter( item => (
+                                    item.team.toLowerCase().includes(search.toLowerCase()) || item.name.toLowerCase().includes(search.toLowerCase())
+                                    )).map(item =>(
+                                        <option key={item._id} value={item._id}>{ item.name + ' (' + item.team + ')'}</option>
+                                        ))
+                                    }
+                            </select>
+                        </div>
+                        <div className="input-group mb-3">
+                            <div className="input-group-prepend">
+                                <label className="input-group-text green" for="cen3">C</label>
+                            </div>
+                            <select className="custom-select" id="cen3" onChange={this.handleChange}>
+                                <option selected>Scegli</option>
+                                { centrocampisti.filter( item => (
+                                    item.team.toLowerCase().includes(search.toLowerCase()) || item.name.toLowerCase().includes(search.toLowerCase())
+                                    )).map(item =>(
+                                        <option key={item._id} value={item._id}>{ item.name + ' (' + item.team + ')'}</option>
+                                        ))
+                                    }
+                            </select>
+                        </div>
+                        <div className="input-group mb-3">
+                            <div className="input-group-prepend">
+                                <label className="input-group-text green" for="cen4">C</label>
+                            </div>
+                            <select className="custom-select" id="cen4" onChange={this.handleChange}>
+                                <option selected>Scegli</option>
+                                { centrocampisti.filter( item => (
+                                    item.team.toLowerCase().includes(search.toLowerCase()) || item.name.toLowerCase().includes(search.toLowerCase())
+                                    )).map(item =>(
+                                        <option key={item._id} value={item._id}>{ item.name + ' (' + item.team + ')'}</option>
+                                        ))
+                                    }
+                            </select>
+                        </div>
+                        <div className="input-group mb-3">
+                            <div className="input-group-prepend">
+                                <label className="input-group-text green" for="cen5">C</label>
+                            </div>
+                            <select className="custom-select" id="cen5" onChange={this.handleChange}>
+                                <option selected>Scegli</option>
+                                { centrocampisti.filter( item => (
+                                    item.team.toLowerCase().includes(search.toLowerCase()) || item.name.toLowerCase().includes(search.toLowerCase())
+                                    )).map(item =>(
+                                        <option key={item._id} value={item._id}>{ item.name + ' (' + item.team + ')'}</option>
+                                        ))
+                                    }
+                            </select>
+                        </div>
+                        <div className="input-group mb-3">
+                            <div className="input-group-prepend">
+                                <label className="input-group-text green" for="cen6">C</label>
+                            </div>
+                            <select className="custom-select" id="cen6" onChange={this.handleChange}>
+                                <option selected>Scegli</option>
+                                { centrocampisti.filter( item => (
+                                    item.team.toLowerCase().includes(search.toLowerCase()) || item.name.toLowerCase().includes(search.toLowerCase())
+                                    )).map(item =>(
+                                        <option key={item._id} value={item._id}>{ item.name + ' (' + item.team + ')'}</option>
+                                        ))
+                                    }
+                            </select>
+                        </div>
+                        <div className="input-group mb-3">
+                            <div className="input-group-prepend">
+                                <label className="input-group-text green" for="cen7">C</label>
+                            </div>
+                            <select className="custom-select" id="cen7" onChange={this.handleChange}>
+                                <option selected>Scegli</option>
+                                { centrocampisti.filter( item => (
+                                    item.team.toLowerCase().includes(search.toLowerCase()) || item.name.toLowerCase().includes(search.toLowerCase())
+                                    )).map(item =>(
+                                        <option key={item._id} value={item._id}>{ item.name + ' (' + item.team + ')'}</option>
+                                        ))
+                                    }
+                            </select>
+                        </div>
+                        <div className="input-group mb-3">
+                            <div className="input-group-prepend">
+                                <label className="input-group-text green" for="cen8">C</label>
+                            </div>
+                            <select className="custom-select" id="cen8" onChange={this.handleChange}>
+                                <option selected>Scegli</option>
+                                { centrocampisti.filter( item => (
+                                    item.team.toLowerCase().includes(search.toLowerCase()) || item.name.toLowerCase().includes(search.toLowerCase())
+                                    )).map(item =>(
+                                        <option key={item._id} value={item._id}>{ item.name + ' (' + item.team + ')'}</option>
+                                        ))
+                                    }
+                            </select>
+                        </div>
 
                         {/* Attaccanti */}
-
-                        <h2>Attaccanti</h2>
-
-                        <select id="att1" onChange={this.handleChange}>
-                            <option selected>Scegli</option>
-                            { attaccanti.filter( item => (
-                                item.team.toLowerCase().includes(search.toLowerCase()) || item.name.toLowerCase().includes(search.toLowerCase())
-                                )).map(item =>(
-                                    <option key={item._id} value={item._id}>{ item.name + ' (' + item.team + ')'}</option>
-                                    ))
-                                }
-                        </select>
-
-                        <select id="att2" onChange={this.handleChange}>
-                            <option selected>Scegli</option>
-                            { attaccanti.filter( item => (
-                                item.team.toLowerCase().includes(search.toLowerCase()) || item.name.toLowerCase().includes(search.toLowerCase())
-                                )).map(item =>(
-                                    <option key={item._id} value={item._id}>{ item.name + ' (' + item.team + ')'}</option>
-                                    ))
-                                }
-                        </select>
-
-                        <select id="att3" onChange={this.handleChange}>
-                            <option selected>Scegli</option>
-                            { attaccanti.filter( item => (
-                                item.team.toLowerCase().includes(search.toLowerCase()) || item.name.toLowerCase().includes(search.toLowerCase())
-                                )).map(item =>(
-                                    <option key={item._id} value={item._id}>{ item.name + ' (' + item.team + ')'}</option>
-                                    ))
-                                }
-                        </select>
-
-                        <select id="att4" onChange={this.handleChange}>
-                            <option selected>Scegli</option>
-                            { attaccanti.filter( item => (
-                                item.team.toLowerCase().includes(search.toLowerCase()) || item.name.toLowerCase().includes(search.toLowerCase())
-                                )).map(item =>(
-                                    <option key={item._id} value={item._id}>{ item.name + ' (' + item.team + ')'}</option>
-                                    ))
-                                }
-                        </select>
-
-                        <select id="att5" onChange={this.handleChange}>
-                            <option selected>Scegli</option>
-                            { attaccanti.filter( item => (
-                                item.team.toLowerCase().includes(search.toLowerCase()) || item.name.toLowerCase().includes(search.toLowerCase())
-                                )).map(item =>(
-                                    <option key={item._id} value={item._id}>{ item.name + ' (' + item.team + ')'}</option>
-                                    ))
-                                }
-                        </select>
-
-                        <select id="att6" onChange={this.handleChange}>
-                            <option selected>Scegli</option>
-                            { attaccanti.filter( item => (
-                                item.team.toLowerCase().includes(search.toLowerCase()) || item.name.toLowerCase().includes(search.toLowerCase())
-                                )).map(item =>(
-                                    <option key={item._id} value={item._id}>{ item.name + ' (' + item.team + ')'}</option>
-                                    ))
-                                }
-                        </select>
-
+                        <div className="input-group mb-3">
+                            <div className="input-group-prepend">
+                                <label className="input-group-text red" for="att1">A</label>
+                            </div>
+                            <select className="custom-select" id="att1" onChange={this.handleChange}>
+                                <option selected>Scegli</option>
+                                { attaccanti.filter( item => (
+                                    item.team.toLowerCase().includes(search.toLowerCase()) || item.name.toLowerCase().includes(search.toLowerCase())
+                                    )).map(item =>(
+                                        <option key={item._id} value={item._id}>{ item.name + ' (' + item.team + ')'}</option>
+                                        ))
+                                    }
+                            </select>
+                        </div>
+                        <div className="input-group mb-3">
+                            <div className="input-group-prepend">
+                                <label className="input-group-text red" for="att2">A</label>
+                            </div>
+                            <select className="custom-select" id="att2" onChange={this.handleChange}>
+                                <option selected>Scegli</option>
+                                { attaccanti.filter( item => (
+                                    item.team.toLowerCase().includes(search.toLowerCase()) || item.name.toLowerCase().includes(search.toLowerCase())
+                                    )).map(item =>(
+                                        <option key={item._id} value={item._id}>{ item.name + ' (' + item.team + ')'}</option>
+                                        ))
+                                    }
+                            </select>
+                        </div>
+                        <div className="input-group mb-3">
+                            <div className="input-group-prepend">
+                                <label className="input-group-text red" for="att3">A</label>
+                            </div>
+                            <select className="custom-select" id="att3" onChange={this.handleChange}>
+                                <option selected>Scegli</option>
+                                { attaccanti.filter( item => (
+                                    item.team.toLowerCase().includes(search.toLowerCase()) || item.name.toLowerCase().includes(search.toLowerCase())
+                                    )).map(item =>(
+                                        <option key={item._id} value={item._id}>{ item.name + ' (' + item.team + ')'}</option>
+                                        ))
+                                    }
+                            </select>
+                        </div>
+                        <div className="input-group mb-3">
+                            <div className="input-group-prepend">
+                                <label className="input-group-text red" for="att4">A</label>
+                            </div>
+                            <select className="custom-select" id="att4" onChange={this.handleChange}>
+                                <option selected>Scegli</option>
+                                { attaccanti.filter( item => (
+                                    item.team.toLowerCase().includes(search.toLowerCase()) || item.name.toLowerCase().includes(search.toLowerCase())
+                                    )).map(item =>(
+                                        <option key={item._id} value={item._id}>{ item.name + ' (' + item.team + ')'}</option>
+                                        ))
+                                    }
+                            </select>
+                        </div>
+                        <div className="input-group mb-3">
+                            <div className="input-group-prepend">
+                                <label className="input-group-text red" for="att5">A</label>
+                            </div>
+                            <select className="custom-select" id="att5" onChange={this.handleChange}>
+                                <option selected>Scegli</option>
+                                { attaccanti.filter( item => (
+                                    item.team.toLowerCase().includes(search.toLowerCase()) || item.name.toLowerCase().includes(search.toLowerCase())
+                                    )).map(item =>(
+                                        <option key={item._id} value={item._id}>{ item.name + ' (' + item.team + ')'}</option>
+                                        ))
+                                    }
+                            </select>
+                        </div>
+                        <div className="input-group mb-3">
+                            <div className="input-group-prepend">
+                                <label className="input-group-text red" for="att6">A</label>
+                            </div>
+                            <select className="custom-select" id="att6" onChange={this.handleChange}>
+                                <option selected>Scegli</option>
+                                { attaccanti.filter( item => (
+                                    item.team.toLowerCase().includes(search.toLowerCase()) || item.name.toLowerCase().includes(search.toLowerCase())
+                                    )).map(item =>(
+                                        <option key={item._id} value={item._id}>{ item.name + ' (' + item.team + ')'}</option>
+                                        ))
+                                    }
+                            </select>
+                        </div>
                     </form>
                 </div>
             )
