@@ -1,12 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Auth0Provider } from '@auth0/auth0-react';
-import LoginButton from './components/LoginButton';
-import Profile from './components/Profile';
-import LogoutButton from './components/LogoutButton';
+import Navbar from "./components/Navbar";
 
 ReactDOM.render(
   <Auth0Provider
@@ -15,10 +12,7 @@ ReactDOM.render(
     redirectUri={window.location.origin}
   >
     <React.StrictMode>
-    <h1>Vissaja Liha App</h1>
-    <LoginButton />
-    <LogoutButton />
-    <Profile />
+      <Navbar />
     </React.StrictMode>
   </Auth0Provider>,  
   document.getElementById('root')

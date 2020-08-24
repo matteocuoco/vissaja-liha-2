@@ -11,11 +11,12 @@ const Profile = () => {
         <p>Hai effettuato l'accesso come:</p>
         <h2>{user.name}</h2>
         <p>{user.email}</p>
-        <App 
-            user={user.email}
-        />
       </div>
+    ) ||
+    !isAuthenticated && (
+      <p>You must be logged in to use the application.</p>
     )
+
   );
 };
 

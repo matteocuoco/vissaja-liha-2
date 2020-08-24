@@ -62,7 +62,6 @@ class App extends Component {
         var stateObj = {};
         stateObj[getState] = getValue;
         this.setState(stateObj);
-        document.getElementById("search").classList.add('hide');
     }
 
     handleSearch(event) {
@@ -158,20 +157,18 @@ class App extends Component {
         ));
 
         if(!isLoaded) {
-            return <div>Loading...</div>
+            return <p>Loading...</p>
         }
         else {
 
             return (
                 <div>
-                    <h1>Squad Builder</h1>
                     <form>
-
                         <input id="search" type="text" value={search} onChange={this.handleSearch} placeholder="Search for player or team..."></input>
 
                         <button type="button" class="btn btn-primary" onClick={this.saveFantasyTeam}>Salva</button>
 
-                        {/* Portieri */}
+                        {/* Portieri */}                        
                         <div className="input-group mb-3">
                             <div className="input-group-prepend">
                                 <label className="input-group-text blue" for="por1">P</label>
@@ -185,7 +182,7 @@ class App extends Component {
                                         ))
                                     }
                             </select>
-                        </div>  
+                        </div>
                         <div className="input-group mb-3">
                             <div className="input-group-prepend">
                                 <label className="input-group-text blue" for="por2">P</label>

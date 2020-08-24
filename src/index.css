@@ -30,7 +30,7 @@ select {
 button {
   display: inline-block;
   width: auto;
-  min-width: 5em;
+  min-width: 1em;
   margin-bottom: 2em;
   margin-top: 1em;
   padding: 2em;
@@ -41,16 +41,16 @@ button {
 h1, h2 {
   font-family: 'Quicksand', sans-serif;
   font-weight: 500;
-  margin-bottom: 2em;
   margin-top: 1em;
 }
 
 input {
   display: block;
   width: auto;
-  min-width: 5em;
+  min-width: 15em;
   margin: auto;
-  padding: 2em;
+  margin-top: 1em;
+  padding: 1em;
   height: 0.5rem;
 }
 
@@ -73,9 +73,7 @@ input {
   color: white;
   background-color: #ff4136;
 }
-/* 
-blue:   #0074d9
-orange: #ff851b
-green: 	#2ecc40
-red:    #ff4136
-*/
+
+p {
+  margin-top: 2em;
+}

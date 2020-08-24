@@ -6,7 +6,7 @@ const LogoutButton = () => {
 
   return (
     isAuthenticated && (
-        <button type="button" class="btn btn-primary" onClick={() => logout({ returnTo: window.location.origin })}>Log Out</button>
+        <a class="nav-link" href="#" tabindex="-1" aria-disabled="true" onClick={() => logout({ returnTo: window.location.origin })}>Log Out</a>
     )
   );
 };
