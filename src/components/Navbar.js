@@ -27,23 +27,23 @@ const Navbar = () => {
                       <LogoutButton />
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#"><Link to="/profile">Profile</Link></a>
+                    <a class="nav-link" href="#" tabindex="-1" aria-disabled="true"><Link to="/profile" className="link">Profile</Link></a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#"><Link to="/squadbuilder">Squad Builder</Link></a>
+                    <a class="nav-link" href="#" tabindex="-1" aria-disabled="true"><Link to="/squadbuilder" className="link">Squad Builder</Link></a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#"><Link to="/formation">Formation</Link></a>
+                    <a class="nav-link" href="#" tabindex="-1" aria-disabled="true"><Link to="/formation" className="link">Formation</Link></a>
                   </li>
                 </ul>
             </div>
         </nav>
         <Switch>
-            <Route path="/squadbuilder">
-              <SquadBuilder />
-            </Route>
             <Route path="/profile">
               <Profile />
+            </Route>
+            <Route path="/squadbuilder">
+              <SquadBuilder />
             </Route>
             <Route path="/formation">
               <Formation />
